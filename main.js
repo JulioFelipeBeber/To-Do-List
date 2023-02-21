@@ -1,0 +1,22 @@
+$(document).ready(function(){
+    var count= 0;
+    $('.add').on('click',function(){
+        var inputval= $('.form-control').val();
+        if (inputval != '') {
+            count ++;
+            $(".to-do-list").append('<li class="li-list"><div class="left-cont"><input type="checkbox" id="check-'+count+'"  ><label for="check-'+count+'"></label><span>'+inputval+'</span></div><span class="remove"><i class="fa-solid fa-trash"></i></span></li>')
+        };
+        $('.form-control').val('');
+    });
+    $(document).on('change','input[type="checkbox"]',function(){
+        if ($(this).is(':checked')){
+            $(this).closest('li').children('remove').addClass('active');      
+        }else{
+            $(this).closest('li').children('remove').removeClass('active');  
+        }
+
+        $(document).on('click','.remove', function(){
+            $(this).parent().remove();
+        })
+    })
+})
